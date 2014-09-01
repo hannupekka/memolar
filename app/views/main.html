@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-2 text-center" ng-class="{'col-lg-offset-5': !running}" ng-controller="PlayerCtrl">
+      <ng-form id="playerList" name="playerList" ng-hide="running || winner">
+        <player-input ng-repeat="player in players"></player-input>
+        <div class="game-options">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Pairs</div>
+              <input type="number" id="tileCount" class="form-control input-lg" min="1" max="30" ng-model="tiles">
+            </div>
+          </div>
+        </div>
+        <div class="player-controls">
+          <button class="btn btn-primary btn-lg" ng-click="addPlayer()" ng-disabled="playerList.$invalid">Add player</button>
+          <button class="btn btn-primary btn-lg" ng-click="startGame(tiles)" ng-disabled="playerList.$invalid || !players.length">Start game</button>
+        </div>
+      </ng-form>
+      <table class="table" ng-show="running">
+        <tbody>
+        <tr ng-repeat="player in players | orderBy:sort" ng-class="{'current': player.active}">
+          <td class="name">{{player.name}}</td>
+          <td class="score">{{player.score}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-10 game-area" ng-controller="TileCtrl" ng-show="running">
+      <tile ng-repeat="tile in tiles"></tile>
+    </div>
+  </div>
+  <div class="row stats" ng-class="{show: !running && winner.length > 0}">
+    <div class="col-lg-8 col-lg-offset-2 text-center">
+      <h1 ng-show="winner.length === 1">And the winner is <span class="winner-name">{{winner[0].name}}</span> with <span class="winner-score">{{winner[0].score}}</span> points after <span>{{round}}</span> rounds!</h1>
+      <h1 ng-show="winner.length !== 1">It's a tie between <span class="winner-name" ng-repeat="player in winner">{{player.name}}<span class="winner-separator" ng-if="!$last"> & </span></span> with <span class="winner-score">{{winner[0].score}}</span> points after <span>{{round}}</span> rounds!</h1>
+      <button class="btn btn-primary btn-lg" ng-click="startGame()">Replay</button>
+      <button class="btn btn-primary btn-lg" ng-click="resetGame()">Reset</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+$tile-color: #428bca;
+$tile-text-color: #fff;
+$tile-size: 140px;
+
+.player-input {
+  margin-bottom: 10px;
+
+  .input-group-btn {
+    .glyphicon {
+      top: 0px;
+    }
+  }
+
+  .ng-invalid {
+    background-color: rgba(255, 192, 203, 0.5);
+  }
+
+  .add-player {
+    padding-bottom: 11px;
+  }
+}
+
+.game-area {
+  .tile {
+    display: inline-block;
+    margin: 3px 5px;
+    top: initial;
+    position: relative;
+    width: $tile-size;
+    height: $tile-size;
+
+    div {
+      font-size: ($tile-size/2);
+      background-color: $tile-color;
+      color: $tile-text-color;
+      position: absolute;
+      width: $tile-size;
+      height: $tile-size;
+      top: inherit;
+      border-radius: 6px;
+    }
+
+    .mask {
+      position: absolute;
+      opacity: 1;
+      transition: all 1s;
+      z-index: 1;
+    }
+
+    .game-tile {
+      opacity: 1;
+      transition: all 1s;
+      line-height: $tile-size;
+      text-align: center;
+    }
+
+    &.selected {
+      .mask {
+        opacity: 0;
+        transition: all 1s;
+      }
+
+      .game-tile {
+        background-color: darken($tile-color, 10%);
+      }
+    }
+
+    &.default {
+      * { transition: all 0s;}
+    }
+
+    &.found {
+      .mask {
+        z-index: 0;
+        opacity: 0;
+      }
+
+      .game-tile {
+        opacity: 0.2;
+        transition: all 1s;
+      }
+    }
+  }
+}
+
+.table {
+  text-align: left;
+  font-size: 120%;
+
+  tbody {
+    tr {
+      &.current {
+        font-weight: bold;
+        color: $tile-text-color;
+
+        td {
+          background-color: $tile-color;
+
+          &.name { border-radius: 6px 0 0 6px; }
+          &.score { border-radius: 0 6px 6px 0; }
+        }
+      }
+
+      td {
+        border-top: none;
+      }
+    }
+  }
+}
+
+.stats {
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+
+  span {
+    font-style: italic;
+    color: $tile-color;
+    font-weight: bold;
+
+      .winner-separator {
+        font-style: normal;
+        color: #000;
+        font-weight: normal;
+      }
+  }
+}

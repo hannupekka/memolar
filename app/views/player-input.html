@@ -1,0 +1,17 @@
+<div class="input-group player-input">
+  <input id="{{$index}}"
+    type="text"
+    class="form-control input-lg"
+    ng-model="player.name"
+    ng-required="true"
+    ng-minlength="2"
+    ng-maxlength="15"
+    ng-pattern="/^[A-Öa-ö0-9]+$/"
+    focus="true"
+    placeholder="Player name"
+    ng-keyup="$event.keyCode == 13 && playerList.$valid && addPlayer()">
+  <span class="input-group-btn">
+    <button class="btn btn-default btn-lg add-player glyphicon glyphicon-minus-sign" ng-click="removePlayer($index)" type="button" tabIndex="-1"></button>
+    }
+  </span>
+</div>
