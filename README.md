@@ -1,7 +1,7 @@
 memolar
 =======
 
-Memory games powered by AngularJS
+Memory game powered by AngularJS
 
 Getting started
 ===============
