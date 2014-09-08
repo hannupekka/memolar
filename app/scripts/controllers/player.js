@@ -61,14 +61,20 @@ angular.module('memolar2App')
             return player.name === '';
         });
 
-        // Reset player data.
-        _.map($scope.players, function(player) {
-            player.score = 0;
-            player.active = false;
-        });
+        // Check that we have players.
+        if ($scope.players.length > 0) {
+            // Reset player data.
+            _.map($scope.players, function(player) {
+                player.score = 0;
+                player.active = false;
+            });
 
-        // Set 1st player active.
-        $scope.players[0].active = true;
+            // Set 1st player active.
+            $scope.players[0].active = true;
+
+            // Emit 'initGame'-event for GameCtrl.
+            $scope.$emit('initGame');
+        }
     });
 
     // Listen for 'endTurn'-events from TileCtrl.

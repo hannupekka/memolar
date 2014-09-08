@@ -17,18 +17,22 @@ angular.module('memolar2App')
     // Broadcasts 'startGame'-event for child scopes.
     $scope.startGame = function(tiles) {
         $scope.$broadcast('startGame', tiles);
-        $scope.running = true;
-        $scope.round = 1;
-        $scope.winner = [];
-
-        // Stop applauses.
-        ngAudio.stop('applause');
     };
 
     $scope.resetGame = function() {
         $scope.running = false;
         $scope.winner = [];
     };
+
+    // Listen for 'initGame'-events from PlayerCtrl.
+    $scope.$on('initGame', function() {
+        $scope.running = true;
+        $scope.round = 1;
+        $scope.winner = [];
+
+        // Stop applauses.
+        ngAudio.stop('applause');
+    });
 
     // Listen for 'nextRound'-events from TileCtrl.
     $scope.$on('nextRound', function() {

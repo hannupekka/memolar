@@ -15,4 +15,19 @@ describe('Controller: PlayerCtrl', function () {
       $scope: scope
     });
   }));
+
+  it('should have one player with no name', function() {
+    expect(scope.players.length).toBe(1);
+    expect(scope.players[0].name).toBe('');
+  });
+
+  it('should have two players after addPlayer', function() {
+    scope.addPlayer();
+    expect(scope.players.length).toBe(2);
+  });
+
+  it('should have no players after removePlayer', function() {
+    scope.removePlayer(0);
+    expect(scope.players.length).toBe(0);
+  });
 });
