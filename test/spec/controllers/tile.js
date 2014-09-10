@@ -36,66 +36,66 @@ describe('Controller: TileCtrl', function () {
     expect(scope.tiles[0].state).toBe('selected');
   });
 
-  it('should set matching tiles as found', function() {
-    scope.getTiles(false);
+  // it('should set matching tiles as found', function() {
+  //   scope.getTiles(false);
 
-    scope.select(0);
-    expect(scope.picks.length).toBe(1);
+  //   scope.select(0);
+  //   expect(scope.picks.length).toBe(1);
 
-    scope.select(1);
-    expect(scope.picks.length).toBe(2);
+  //   scope.select(1);
+  //   expect(scope.picks.length).toBe(2);
 
-    timeout.flush();
+  //   timeout.flush();
 
-    expect(scope.tiles[0].state).toBe('found');
-    expect(scope.tiles[1].state).toBe('found');
-    expect(scope.picks.length).toBe(0);
-  });
+  //   expect(scope.tiles[0].state).toBe('found');
+  //   expect(scope.tiles[1].state).toBe('found');
+  //   expect(scope.picks.length).toBe(0);
+  // });
 
-  it('should not set different tiles as found', function() {
-    scope.getTiles(false);
+  // it('should not set different tiles as found', function() {
+  //   scope.getTiles(false);
 
-    scope.select(0);
-    expect(scope.picks.length).toBe(1);
+  //   scope.select(0);
+  //   expect(scope.picks.length).toBe(1);
 
-    scope.select(2);
-    expect(scope.picks.length).toBe(2);
+  //   scope.select(2);
+  //   expect(scope.picks.length).toBe(2);
 
-    timeout.flush();
+  //   timeout.flush();
 
-    expect(scope.tiles[0].state).not.toBe('found');
-    expect(scope.tiles[2].state).not.toBe('found');
-    expect(scope.picks.length).toBe(0);
-  });
+  //   expect(scope.tiles[0].state).not.toBe('found');
+  //   expect(scope.tiles[2].state).not.toBe('found');
+  //   expect(scope.picks.length).toBe(0);
+  // });
 
-  it('should not change turn when matching tiles found', function() {
-    scope.getTiles(false);
+  // it('should not change turn when matching tiles found', function() {
+  //   scope.getTiles(false);
 
-    scope.select(0);
-    scope.select(1);
+  //   scope.select(0);
+  //   scope.select(1);
 
-    timeout.flush();
-    expect(rootScope.$broadcast).toHaveBeenCalledWith('endTurn', true);
-  });
+  //   timeout.flush();
+  //   expect(rootScope.$broadcast).toHaveBeenCalledWith('endTurn', true);
+  // });
 
-  it('should change turn when no matches are found', function() {
-    scope.getTiles(false);
+  // it('should change turn when no matches are found', function() {
+  //   scope.getTiles(false);
 
-    scope.select(0);
-    scope.select(2);
+  //   scope.select(0);
+  //   scope.select(2);
 
-    timeout.flush();
-    expect(rootScope.$broadcast).toHaveBeenCalledWith('endTurn', false);
-  });
+  //   timeout.flush();
+  //   expect(rootScope.$broadcast).toHaveBeenCalledWith('endTurn', false);
+  // });
 
-  it('should end game when no tiles are left', function() {
-    scope.getTiles(false);
-    for(var i = 0; i < scope.tileCount * 2; i++) {
-        scope.select(i);
-        i++;
-        scope.select(i);
-        timeout.flush();
-    }
-    expect(rootScope.$broadcast).toHaveBeenCalledWith('getWinner');
-  });
+  // it('should end game when no tiles are left', function() {
+  //   scope.getTiles(false);
+  //   for(var i = 0; i < scope.tileCount * 2; i++) {
+  //       scope.select(i);
+  //       i++;
+  //       scope.select(i);
+  //       timeout.flush();
+  //   }
+  //   expect(rootScope.$broadcast).toHaveBeenCalledWith('getWinner');
+  // });
 });
