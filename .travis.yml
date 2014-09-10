@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - '0.10'
+before_install:
+  - 'curl -sSL https://get.rvm.io | bash -s stable'
+  - 'gem update --system && gem install compass'
 before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
