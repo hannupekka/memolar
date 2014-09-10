@@ -1,4 +1,4 @@
-memolar
+memolar ![Travis](https://travis-ci.org/hannupekka/memolar.svg?branch=master)
 =======
 
 Memory game powered by AngularJS
