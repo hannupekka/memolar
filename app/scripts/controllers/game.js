@@ -14,6 +14,9 @@ angular.module('memolar2App')
     $scope.winner = [];
     $scope.tiles = 30;
 
+    // Sounds
+    $scope.soundApplause = ngAudio.load('sounds/Auditorium-Applause-SoundBible.com-280911206.mp3');
+
     // Broadcasts 'startGame'-event for child scopes.
     $scope.startGame = function(tiles) {
         $scope.$broadcast('startGame', tiles);
@@ -31,7 +34,7 @@ angular.module('memolar2App')
         $scope.winner = [];
 
         // Stop applauses.
-        ngAudio.stop('applause');
+        $scope.soundApplause.stop();
     });
 
     // Listen for 'nextRound'-events from TileCtrl.
@@ -49,7 +52,7 @@ angular.module('memolar2App')
         }
 
         // Play applauses.
-        ngAudio.play('applause');
+        $scope.soundApplause.play();
 
         $scope.winner = winner;
     });

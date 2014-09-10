@@ -19,7 +19,7 @@ var Tile = function(glyph) {
  * Controller of the memolar2App
  */
 angular.module('memolar2App')
-.controller('TileCtrl', ['$scope', '$rootScope', '$timeout', '_', function ($scope, $rootScope, $timeout, _) {
+.controller('TileCtrl', ['$scope', '$rootScope', '$timeout', '_', 'ngAudio', function ($scope, $rootScope, $timeout, _, ngAudio) {
     var tileGlyphs = [
             'euro', 'cloud', 'envelope', 'glass', 'music',
             'heart', 'star', 'home', 'time', 'camera',
@@ -32,6 +32,9 @@ angular.module('memolar2App')
     $scope.tileCount = 30;
     $scope.tilesLeft = $scope.tileCount;
     $scope.picks = [];
+
+    // Sounds
+    $scope.pickSound = ngAudio.load('sounds/BodyPunch2.mp3');
 
     /**
      * Changes tiles state after given delay
@@ -89,6 +92,9 @@ angular.module('memolar2App')
         if (_.where($scope.picks, {index: index}).length > 0) {
             return false;
         }
+
+        // Play sound
+        $scope.pickSound.play();
 
         // Push selected index and glyph for turn picks.
         $scope.picks.push(pick);
